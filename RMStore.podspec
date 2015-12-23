@@ -13,7 +13,6 @@ Pod::Spec.new do |s|
   #s.default_subspec = 'Core'
 
   #s.default_subspec = 'All'
-
   #s.subspec 'All' do |spec|
   #  spec.ios.dependency 'KeychainPersistence'
   #  spec.ios.dependency 'NSUserDefaultsPersistence'
@@ -35,12 +34,12 @@ Pod::Spec.new do |s|
     nsudp.source_files = 'RMStore/Optional/RMStoreUserDefaultsPersistence.{h,m}', 'RMStore/Optional/RMStoreTransaction.{h,m}'
   end
 
-  s.subspec 'AppReceiptVerifier' do |arv|
-    arv.dependency 'RMStore/Core'
-    arv.platform = :ios, '7.0'
-    arv.source_files = 'RMStore/Optional/RMStoreAppReceiptVerifier.{h,m}', 'RMStore/Optional/RMAppReceipt.{h,m}'
-    arv.dependency 'OpenSSL', '~> 1.0.1'
-  end
+  #s.subspec 'AppReceiptVerifier' do |arv|
+  #  arv.dependency 'RMStore/Core'
+  #  arv.platform = :ios, '7.0'
+  #  arv.source_files = 'RMStore/Optional/RMStoreAppReceiptVerifier.{h,m}', 'RMStore/Optional/RMAppReceipt.{h,m}'
+  #  arv.dependency 'OpenSSL', '~> 1.0.1'
+  #end
 
   s.subspec 'TransactionReceiptVerifier' do |trv|
     trv.dependency 'RMStore/Core'
