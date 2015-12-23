@@ -10,7 +10,14 @@ Pod::Spec.new do |s|
   s.platform = :ios, '7.0'
   s.frameworks = 'StoreKit'
   s.requires_arc = true
-  s.default_subspec = 'Core'
+  #s.default_subspec = 'Core'
+
+  s.default_subspec = 'All'
+  s.subspec 'All' do |spec|
+    spec.ios.dependency 'KeychainPersistence'
+    spec.ios.dependency 'NSUserDefaultsPersistence'
+    spec.ios.dependency 'TransactionReceiptVerifier'
+  end
 
   s.subspec 'Core' do |core|
     core.source_files = 'RMStore/*.{h,m}'
