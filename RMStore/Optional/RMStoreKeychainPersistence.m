@@ -93,9 +93,15 @@ NSData* RMKeychainGetValue(NSString *key)
 {
     SKPayment *payment = paymentTransaction.payment;
     NSString *productIdentifier = payment.productIdentifier;
+    
     NSDictionary *transactions = [self transactionsDictionary];
     NSInteger count = [transactions[productIdentifier] integerValue];
-    count++;
+    if(paymentTransaction.originalTransaction){
+        count = 1;
+    }else{
+        count++;
+    }
+    
     NSMutableDictionary *updatedTransactions = [NSMutableDictionary dictionaryWithDictionary:transactions];
     updatedTransactions[productIdentifier] = @(count);
     [self setTransactionsDictionary:updatedTransactions];
