@@ -90,6 +90,12 @@ static const char _base64EncodingTable[64] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefgh
 
 @end
 
+static NSString *sandboxURL     = @"https://sandbox.itunes.apple.com/verifyReceipt";
+static NSString *productionURL  = @"https://buy.itunes.apple.com/verifyReceipt";
+static NSString *receiptDataKey = @"receipt-data";
+static NSString *userIDKey      = @"userID";
+static NSString *productIDKey   = @"productID";
+static NSString *quantityKey    = @"quantity";
 
 @implementation RMStoreTransactionReceiptVerifier
 
@@ -100,6 +106,7 @@ static const char _base64EncodingTable[64] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefgh
     NSString *receipt = [transaction.transactionReceipt rm_stringByBase64Encoding];
     if (receipt == nil)
     {
+        NSAssert(receipt, @"can not happend which should not consider");
         if (failureBlock != nil)
         {
             NSError *error = [NSError errorWithDomain:RMStoreErrorDomain code:0 userInfo:nil];
@@ -107,13 +114,26 @@ static const char _base64EncodingTable[64] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefgh
         }
         return;
     }
-    static NSString *receiptDataKey = @"receipt-data";
-    NSDictionary *jsonReceipt = @{receiptDataKey : receipt};
     
+    NSDictionary *jsonReceipt = @{receiptDataKey : receipt};
+    jsonReceipt = [jsonReceipt mutableCopy];
+
+    NSString *userID = transaction.payment.applicationUsername;
+    NSString *productID = transaction.payment.productIdentifier;
+    NSInteger quantity = transaction.payment.quantity;
+    if ([userID length]) {
+        [jsonReceipt setValue:userID forKey:userIDKey];
+    }
+    if ([productID length]) {
+        [jsonReceipt setValue:productID forKey:productIDKey];
+        [jsonReceipt setValue:@(quantity) forKey:quantityKey];
+    }
+
     NSError *error;
     NSData *requestData = [NSJSONSerialization dataWithJSONObject:jsonReceipt options:0 error:&error];
     if (!requestData)
     {
+        NSAssert(requestData, @"can not happend which should not consider");
         RMStoreLog(@"Failed to serialize receipt into JSON");
         if (failureBlock != nil)
         {
@@ -121,8 +141,6 @@ static const char _base64EncodingTable[64] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefgh
         }
         return;
     }
-    
-    static NSString *productionURL = @"https://buy.itunes.apple.com/verifyReceipt";
     
     [self verifyRequestData:requestData url:productionURL success:successBlock failure:failureBlock];
 }
@@ -182,7 +200,6 @@ static const char _base64EncodingTable[64] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefgh
                 // See also: http://stackoverflow.com/questions/9677193/ios-storekit-can-i-detect-when-im-in-the-sandbox
                 // Always verify your receipt first with the production URL; proceed to verify with the sandbox URL if you receive a 21007 status code. Following this approach ensures that you do not have to switch between URLs while your application is being tested or reviewed in the sandbox or is live in the App Store.
                 
-                static NSString *sandboxURL = @"https://sandbox.itunes.apple.com/verifyReceipt";
                 [self verifyRequestData:requestData url:sandboxURL success:successBlock failure:failureBlock];
             }
             else
