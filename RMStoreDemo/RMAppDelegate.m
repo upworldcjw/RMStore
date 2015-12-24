@@ -23,7 +23,7 @@
 #import "RMPurchasesViewController.h"
 #import "RMStore.h"
 #import "RMStoreTransactionReceiptVerifier.h"
-#import "RMStoreAppReceiptVerifier.h"
+//#import "RMStoreAppReceiptVerifier.h"
 #import "RMStoreKeychainPersistence.h"
 
 @implementation RMAppDelegate {
@@ -51,8 +51,10 @@
 
 - (void)configureStore
 {
-    const BOOL iOS7OrHigher = floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1;
-    _receiptVerifier = iOS7OrHigher ? [[RMStoreAppReceiptVerifier alloc] init] : [[RMStoreTransactionReceiptVerifier alloc] init];
+//    const BOOL iOS7OrHigher = floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1;
+//    _receiptVerifier = iOS7OrHigher ? [[RMStoreAppReceiptVerifier alloc] init] : [[RMStoreTransactionReceiptVerifier alloc] init];
+    
+    _receiptVerifier = [[RMStoreTransactionReceiptVerifier alloc] init];
     [RMStore defaultStore].receiptVerifier = _receiptVerifier;
     
     _persistence = [[RMStoreKeychainPersistence alloc] init];

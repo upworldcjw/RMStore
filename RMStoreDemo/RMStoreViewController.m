@@ -31,10 +31,7 @@
     [super viewDidLoad];
     self.title = NSLocalizedString(@"Store", @"");
     
-#warning Replace with your product ids.
-    _products = @[@"net.robotmedia.test.consumable",
-                  @"net.robotmedia.test.nonconsumable",
-                  @"net.robotmedia.test.nonconsumable.2"];
+    _products = @[@"pengpeng.nearbycn.test_2",@"pengpeng.nearbycn.test_3",@"pengpeng.nearbycn.test_4",@"pengpeng.nearbycn.test_5",@"pengpeng.nearbycn.test_6",@"pengpeng.nearbycn.test_7"];
     
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     [[RMStore defaultStore] requestProducts:[NSSet setWithArray:_products] success:^(NSArray *products, NSArray *invalidProductIdentifiers) {
