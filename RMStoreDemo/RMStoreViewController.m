@@ -20,7 +20,7 @@
 
 #import "RMStoreViewController.h"
 #import "RMStore.h"
-
+#import "RMStoreManager.h"
 @implementation RMStoreViewController {
     NSArray *_products;
     BOOL _productsRequestFinished;
@@ -47,6 +47,11 @@
                                                  otherButtonTitles:nil];
         [alertView show];
     }];
+//    [RMStoreManager purchasedPruductID:@"pengpeng.nearbycn.test_3" userID:@"123" success:^(SKPaymentTransaction *transaction, SKProduct *product) {
+//        NSLog(@"%@",@"购买成功");
+//    } failure:^(SKPaymentTransaction *transaction, NSError *error, SKProduct *product) {
+//        NSLog(@"%@",@"购买失败");
+//    }];
 }
 
 #pragma mark Table view data source

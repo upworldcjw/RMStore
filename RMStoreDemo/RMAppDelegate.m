@@ -25,7 +25,7 @@
 #import "RMStoreTransactionReceiptVerifier.h"
 //#import "RMStoreAppReceiptVerifier.h"
 #import "RMStoreKeychainPersistence.h"
-
+#import "RMStoreManager.h"
 @implementation RMAppDelegate {
     id<RMStoreReceiptVerifier> _receiptVerifier;
     RMStoreKeychainPersistence *_persistence;
@@ -33,7 +33,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [self configureStore];
+    [RMStoreManager purchasedRegister];
+//    [self configureStore];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     UIViewController *storeVC = [[RMStoreViewController alloc] initWithNibName:@"RMStoreViewController" bundle:nil];
@@ -51,14 +52,11 @@
 
 - (void)configureStore
 {
-//    const BOOL iOS7OrHigher = floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1;
-//    _receiptVerifier = iOS7OrHigher ? [[RMStoreAppReceiptVerifier alloc] init] : [[RMStoreTransactionReceiptVerifier alloc] init];
-    
-    _receiptVerifier = [[RMStoreTransactionReceiptVerifier alloc] init];
-    [RMStore defaultStore].receiptVerifier = _receiptVerifier;
-    
-    _persistence = [[RMStoreKeychainPersistence alloc] init];
-    [RMStore defaultStore].transactionPersistor = _persistence;
+//    _receiptVerifier = [[RMStoreTransactionReceiptVerifier alloc] init];
+//    [RMStore defaultStore].receiptVerifier = _receiptVerifier;
+//    
+//    _persistence = [[RMStoreKeychainPersistence alloc] init];
+//    [RMStore defaultStore].transactionPersistor = _persistence;
 }
 
 @end

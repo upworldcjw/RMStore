@@ -57,6 +57,28 @@ typedef NSInteger RMStoreManagerErrorCode;
     [RMStoreManager share];
 }
 
+//根据productID 从appStore返回对应的信息
++(void)localPriceOfProductID:(NSString *)productID asyBlock:(void (^)(NSString *localPrice))asyBlock{
+    [[RMStore defaultStore] requestProducts:[NSSet setWithArray:@[productID]]
+                                    success:^(NSArray *products, NSArray *invalidProductIdentifiers) {
+                                        NSString *localPrice = [RMStoreManager localPriceOfProductID:productID];
+                                        asyBlock(localPrice);
+                                    } failure:^(NSError *error) {
+                                        asyBlock(nil);
+                                    }];
+}
+
+
+//根据productID 从appStore返回对应的信息
++(NSString *)localPriceOfProductID:(NSString *)productID{
+    SKProduct *product = [[RMStore defaultStore]productForIdentifier:productID];
+    if (product) {
+        return [RMStore localizedPriceOfProduct:product];
+    }
+    return nil;
+}
+
+
 +(void)purchasedPruductID:(NSString *)productID
                    userID:(NSString *)userID
                   success:(void (^)(SKPaymentTransaction *transaction,SKProduct *product))successBlock

@@ -202,6 +202,7 @@ typedef void (^RMStoreSuccessBlock)();
     SKProduct *product = [self productForIdentifier:productIdentifier];
     if (product == nil)
     {
+        NSAssert(product, @"can not nil");
         RMStoreLog(@"unknown product id %@", productIdentifier)
         if (failureBlock != nil)
         {
@@ -370,6 +371,9 @@ typedef void (^RMStoreSuccessBlock)();
     {
         switch (transaction.transactionState)
         {
+            case SKPaymentTransactionStatePurchasing:
+                
+                break;
             case SKPaymentTransactionStatePurchased:
                 [self didPurchaseTransaction:transaction queue:queue];
                 break;
