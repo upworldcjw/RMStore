@@ -29,10 +29,10 @@ Pod::Spec.new do |s|
     kp.frameworks = 'Security'
   end
 
-  s.subspec 'NSUserDefaultsPersistence' do |nsudp|
-    nsudp.dependency 'RMStore/Core'
-    nsudp.source_files = 'RMStore/Optional/RMStoreUserDefaultsPersistence.{h,m}', 'RMStore/Optional/RMStoreTransaction.{h,m}'
-  end
+  #s.subspec 'NSUserDefaultsPersistence' do |nsudp|
+  #  nsudp.dependency 'RMStore/Core'
+  #  nsudp.source_files = 'RMStore/Optional/RMStoreUserDefaultsPersistence.{h,m}', #'RMStore/Optional/RMStoreTransaction.{h,m}'
+  #end
 
   #s.subspec 'AppReceiptVerifier' do |arv|
   #  arv.dependency 'RMStore/Core'

@@ -15,7 +15,6 @@
 		8760464E18130DD800C9B78C /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8760464C18130DD400C9B78C /* Security.framework */; };
 		8760465018131B2600C9B78C /* RMStoreKeychainPersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = 876046481812FB7500C9B78C /* RMStoreKeychainPersistence.m */; };
 		8760465118131B4800C9B78C /* RMStoreTransactionReceiptVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 8793E805180D512E005D7A66 /* RMStoreTransactionReceiptVerifier.m */; };
-		876631F9180EEBF40049B368 /* RMStoreTransaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 876631F8180EEBF40049B368 /* RMStoreTransaction.m */; };
 		8793E799180C2ABE005D7A66 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8793E797180C2ABE005D7A66 /* libcrypto.a */; };
 		8793E79A180C2ABE005D7A66 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8793E798180C2ABE005D7A66 /* libssl.a */; };
 		8793E79D180C2C8E005D7A66 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8793E798180C2ABE005D7A66 /* libssl.a */; };
@@ -92,8 +91,6 @@
 		876046481812FB7500C9B78C /* RMStoreKeychainPersistence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMStoreKeychainPersistence.m; sourceTree = "<group>"; };
 		8760464A18130CBB00C9B78C /* RMStoreKeychainPersistenceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMStoreKeychainPersistenceTests.m; sourceTree = "<group>"; };
 		8760464C18130DD400C9B78C /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		876631F7180EEBF40049B368 /* RMStoreTransaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMStoreTransaction.h; sourceTree = "<group>"; };
-		876631F8180EEBF40049B368 /* RMStoreTransaction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMStoreTransaction.m; sourceTree = "<group>"; };
 		8793E797180C2ABE005D7A66 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = "RMStore/Optional/openssl-1.0.1e/lib/libcrypto.a"; sourceTree = "<group>"; };
 		8793E798180C2ABE005D7A66 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = "RMStore/Optional/openssl-1.0.1e/lib/libssl.a"; sourceTree = "<group>"; };
 		8793E804180D512E005D7A66 /* RMStoreTransactionReceiptVerifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMStoreTransactionReceiptVerifier.h; sourceTree = "<group>"; };
@@ -232,8 +229,6 @@
 				69116C201C2B9E2300E8C4C8 /* unUsed */,
 				876046471812FB7500C9B78C /* RMStoreKeychainPersistence.h */,
 				876046481812FB7500C9B78C /* RMStoreKeychainPersistence.m */,
-				876631F7180EEBF40049B368 /* RMStoreTransaction.h */,
-				876631F8180EEBF40049B368 /* RMStoreTransaction.m */,
 				8793E804180D512E005D7A66 /* RMStoreTransactionReceiptVerifier.h */,
 				8793E805180D512E005D7A66 /* RMStoreTransactionReceiptVerifier.m */,
 			);
@@ -468,7 +463,6 @@
 				A0AF3D1317A802F300D2E836 /* RMStore.m in Sources */,
 				876046491812FB7500C9B78C /* RMStoreKeychainPersistence.m in Sources */,
 				8793E80A180D512E005D7A66 /* RMStoreTransactionReceiptVerifier.m in Sources */,
-				876631F9180EEBF40049B368 /* RMStoreTransaction.m in Sources */,
 				C9F0A43219A241C700811E80 /* GTMCodeCoverageApp.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
