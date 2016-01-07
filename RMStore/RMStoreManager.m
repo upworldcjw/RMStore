@@ -117,6 +117,7 @@ typedef NSInteger RMStoreManagerErrorCode;
             [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
             [[RMStore defaultStore] addPayment:productID user:userID success:^(SKPaymentTransaction *transaction) {
                 [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+                successBlock(transaction,product);
                 //
             } failure:^(SKPaymentTransaction *transaction, NSError *error) {
                 //验证收据网络错误等(包括苹果返回来的错误)
