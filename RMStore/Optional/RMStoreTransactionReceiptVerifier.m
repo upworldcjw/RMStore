@@ -93,9 +93,10 @@ static const char _base64EncodingTable[64] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefgh
 static NSString *sandboxURL     = @"https://sandbox.itunes.apple.com/verifyReceipt";
 static NSString *productionURL  = @"https://buy.itunes.apple.com/verifyReceipt";
 static NSString *receiptDataKey = @"receipt-data";
-static NSString *userIDKey      = @"userID";
-static NSString *productIDKey   = @"productID";
-static NSString *quantityKey    = @"quantity";
+static NSString *kOrderID        = @"orderid";
+//static NSString *userIDKey      = @"userID";
+//static NSString *productIDKey   = @"productID";
+//static NSString *quantityKey    = @"quantity";
 
 @implementation RMStoreTransactionReceiptVerifier
 
@@ -114,20 +115,21 @@ static NSString *quantityKey    = @"quantity";
         }
         return;
     }
-    
+
     NSDictionary *jsonReceipt = @{receiptDataKey : receipt};
     jsonReceipt = [jsonReceipt mutableCopy];
 
-    NSString *userID = transaction.payment.applicationUsername;
-    NSString *productID = transaction.payment.productIdentifier;
-    NSInteger quantity = transaction.payment.quantity;
-    if ([userID length]) {
-        [jsonReceipt setValue:userID forKey:userIDKey];
+    NSString *orderID = transaction.payment.applicationUsername;
+//    NSString *productID = transaction.payment.productIdentifier;
+//    NSInteger quantity = transaction.payment.quantity;
+    
+    if ([orderID length]) {
+        [jsonReceipt setValue:orderID forKey:kOrderID];
     }
-    if ([productID length]) {
-        [jsonReceipt setValue:productID forKey:productIDKey];
-        [jsonReceipt setValue:@(quantity) forKey:quantityKey];
-    }
+//    if ([productID length]) {
+//        [jsonReceipt setValue:productID forKey:productIDKey];
+//        [jsonReceipt setValue:@(quantity) forKey:quantityKey];
+//    }
 
     NSError *error;
     NSData *requestData = [NSJSONSerialization dataWithJSONObject:jsonReceipt options:0 error:&error];
