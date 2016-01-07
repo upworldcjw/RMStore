@@ -94,7 +94,7 @@ static NSString *sandboxURL     = @"https://sandbox.itunes.apple.com/verifyRecei
 static NSString *productionURL  = @"https://buy.itunes.apple.com/verifyReceipt";
 static NSString *receiptDataKey = @"receipt-data";
 static NSString *kOrderID        = @"orderid";
-//static NSString *userIDKey      = @"userID";
+static NSString *kUserIDKey      = @"uid";
 //static NSString *productIDKey   = @"productID";
 //static NSString *quantityKey    = @"quantity";
 
@@ -119,12 +119,18 @@ static NSString *kOrderID        = @"orderid";
     NSDictionary *jsonReceipt = @{receiptDataKey : receipt};
     jsonReceipt = [jsonReceipt mutableCopy];
 
-    NSString *orderID = transaction.payment.applicationUsername;
+    NSString *userInfo = transaction.payment.applicationUsername;
+    NSArray *mutArr = [userInfo componentsSeparatedByString:@"_"];
 //    NSString *productID = transaction.payment.productIdentifier;
 //    NSInteger quantity = transaction.payment.quantity;
-    
+    NSString *orderID = [mutArr objectAtIndex:0];
+
     if ([orderID length]) {
         [jsonReceipt setValue:orderID forKey:kOrderID];
+    }
+    if ([mutArr count] == 2) {
+        NSString *uid = [mutArr objectAtIndex:1];
+        [jsonReceipt setValue:uid forKey:kUserIDKey];
     }
 //    if ([productID length]) {
 //        [jsonReceipt setValue:productID forKey:productIDKey];
