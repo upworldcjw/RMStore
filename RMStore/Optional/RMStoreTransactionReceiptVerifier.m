@@ -90,8 +90,8 @@ static const char _base64EncodingTable[64] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefgh
 
 @end
 
-static NSString *sandboxURL     = @"https://sandbox.itunes.apple.com/verifyReceipt";
-static NSString *productionURL  = @"https://buy.itunes.apple.com/verifyReceipt";
+static NSString *sandboxURL     = @"http://mall.pengpeng.la/mall/order/result";
+static NSString *productionURL  = @"https://mall.pengpeng.la/mall/order/result";
 static NSString *receiptDataKey = @"receipt-data";
 static NSString *kOrderID        = @"orderid";
 static NSString *kUserIDKey      = @"uid";
